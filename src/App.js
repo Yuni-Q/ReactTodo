@@ -54,9 +54,11 @@ class App extends Component {
   };
 
   handleChange(event) {
-    console.log(event.target.name,!event.target.value)
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: value
     });
   };
 
@@ -186,7 +188,7 @@ class App extends Component {
           <form onSubmit={this.handleSubmitUpdate}>
           <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/><br/>
           <input type="text" name="content" value={this.state.content} onChange={this.handleChange}/><br/>
-          <input type="checkbox" name="check" value={this.state.check===1 || this.state.check} checked={this.state.check===1 || this.state.check} onChange={this.handleInputChange}/><br/>
+          <input type="checkbox" name="check" value={this.state.check===1 || this.state.check} checked={this.state.check===1 || this.state.check} onChange={this.handleChange}/><br/>
           <input type="submit" value="Submit"/>
         </form>
         )}
